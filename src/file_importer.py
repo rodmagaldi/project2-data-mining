@@ -27,12 +27,12 @@ class FileImporter:
 
             df = pd.read_csv(f'{self.directory}/{filename}', header=3)
             df['user'] = user_id
-            df['class'] = class_id
+            df['label'] = class_id
             df['iteration'] = iteration
 
             self.dataframe = self.dataframe.append(df)
 
         self.dataframe.sort_values(
-            ['user', 'class', 'iteration'], inplace=True)
+            ['user', 'label', 'iteration'], inplace=True)
 
         return self.dataframe
