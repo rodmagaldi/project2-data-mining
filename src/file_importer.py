@@ -30,7 +30,7 @@ class FileImporter:
             df['label'] = class_id
             df['iteration'] = iteration
 
-            self.dataframe = self.dataframe.append(df)
+            self.dataframe = pd.concat([self.dataframe, df])
 
         self.dataframe.sort_values(
             ['user', 'label', 'iteration'], inplace=True)
