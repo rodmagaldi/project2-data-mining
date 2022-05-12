@@ -13,8 +13,6 @@ class Classifier:
             if current_user == user:
                 continue
 
-            print('user', user)
-
             for label in range(1, 11):
                 for iteration in range(1, 11):
 

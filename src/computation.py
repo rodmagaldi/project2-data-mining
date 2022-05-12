@@ -20,8 +20,11 @@ class Computation:
         return dtw_matrix[-1][-1]
 
     def multivariate_dtw(self, df1, df2):
+
+        normalizer = len(df1['<x>']) + len(df2['<x>'])
+
         dtw_x = self.dtw_cost(df1['<x>'], df2['<x>'])
         dtw_y = self.dtw_cost(df1['<y>'], df2['<y>'])
         dtw_z = self.dtw_cost(df1['<z>'], df2['<z>'])
 
-        return dtw_x + dtw_y + dtw_z
+        return (dtw_x + dtw_y + dtw_z) / normalizer
