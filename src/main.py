@@ -1,13 +1,13 @@
 from file_importer import FileImporter
 from classifier import Classifier
 
-importer = FileImporter('../Sketch-Data-master/SketchData/Domain01')
+importer = FileImporter('Projeto 2\git\project2-data-mining\Sketch-Data-master\SketchData\Domain01')
 classifier = Classifier()
 
 data = importer.get_data()
 
 user = 10
-k = 10
+k = 20
 
 data_train = data.query(f'user != {user}')
 data_test = data.query(f'user == {user}')

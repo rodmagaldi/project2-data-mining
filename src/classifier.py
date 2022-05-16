@@ -15,7 +15,6 @@ class Classifier:
 
             for label in range(1, 11):
                 for iteration in range(1, 11):
-
                     df = dataframe_train.query(
                         f'user == {user} and label == {label} and iteration == {iteration}')
                     cost = self.computation.multivariate_dtw(
@@ -27,6 +26,7 @@ class Classifier:
     def classify(self, dataframe_test_single, dataframe_train, current_user, k):
         distances = self.compute_distances(
             dataframe_test_single, dataframe_train, current_user)[:k]
+        print(distances)
         labels = [item[-1] for item in distances]
         classification = max(set(labels), key=labels.count)
         return classification
