@@ -1,5 +1,5 @@
 import numpy as np
-from sklearn.preprocessing import  StandardScaler
+from sklearn.preprocessing import  StandardScaler,MaxAbsScaler,MinMaxScaler
 import pandas as pd
 
 class Computation:
@@ -22,21 +22,20 @@ class Computation:
 
     def multivariate_dtw(self, df1, df2):
 
-        print(df1)
         df1_norm = pd.DataFrame(self.normalize(df1[['<x>','<y>','<z>']]),columns = ['<x>','<y>','<z>'])
         df2_norm = pd.DataFrame(self.normalize(df2[['<x>','<y>','<z>']]),columns = ['<x>','<y>','<z>'])
-        print(df1_norm)
 
         dtw_x = self.dtw_cost(df1_norm['<x>'], df2_norm['<x>'])
         dtw_y = self.dtw_cost(df1_norm['<y>'], df2_norm['<y>'])
         dtw_z = self.dtw_cost(df1_norm['<z>'], df2_norm['<z>'])
 
-        print(dtw_x,dtw_y,dtw_z)
         return (dtw_x + dtw_y + dtw_z)
 
     def normalize(self,df):
 
-        scaler = StandardScaler()
+        scaler = MinMaxScaler()
         scaler.fit(df)
 
         return scaler.transform(df)
+
+

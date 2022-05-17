@@ -26,7 +26,7 @@ class Classifier:
     def classify(self, dataframe_test_single, dataframe_train, current_user, k):
         distances = self.compute_distances(
             dataframe_test_single, dataframe_train, current_user)[:k]
-        print(distances)
+        #print(distances)
         labels = [item[-1] for item in distances]
         classification = max(set(labels), key=labels.count)
         return classification

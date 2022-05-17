@@ -10,21 +10,20 @@ classifier = Classifier()
 
 data = importer.get_data()
 
-user = 3
-k = 10
+user = 1
 
 data_train = data.query(f'user != {user}')
 data_test = data.query(f'user == {user}')
-data_test_single = data_test.query('label == 1 and iteration == 1')
 
 results = []
 
+one_dollar = OneDollar()
 for label in range(1, 11):
     for iteration in range(1, 11):
         data_test_single = data_test.query(
             f'label == {label} and iteration == {iteration}')
-        classification = classifier.classify(
-            data_test_single, data_train, user, k) 
+        classification = one_dollar.classify(
+            data_test_single, data_train, user)
 
         results.append(classification == label)
 
@@ -36,6 +35,5 @@ for label in range(1, 11):
 
 print(results)
 print("Correctly classified:", 100 * sum(results) / len(results), "%")
-
 
 
