@@ -14,7 +14,6 @@ class Computation:
         for i in range(1, n+1):
             for j in range(1, m+1):
                 cost = abs(series1[i-1] - series2[j-1])
-                # take last min from a square box
                 last_min = np.min(
                     [dtw_matrix[i-1, j], dtw_matrix[i, j-1], dtw_matrix[i-1, j-1]])
                 dtw_matrix[i, j] = cost + last_min
